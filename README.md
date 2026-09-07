@@ -35,14 +35,29 @@
 
 トップの髪の写真は、実際の施術事例ではない生成イメージです。制作指示・素材の記録は `DESIGN-NOTES.md` を参照してください。
 
-## ホスティング
+## GitHub Pagesでの公開
 
-現在のビルドはSites / Cloudflare Workers向けのアプリケーションです。`dist/server`のWorkerと`dist/client`の静的素材を使います。
+公開先: https://crestix-company.github.io/Salon-des-cent/
 
-**Cloudflare Pagesの静的ディレクトリとしてそのまま設定しないでください。** Pagesへ移す場合は静的書き出しの設定と、出力ルートの`index.html`を別途検証してください。
+GitHubの Settings → Pages → Build and deployment → Source は **GitHub Actions** に設定します。`Deploy from a branch / main / root` は使いません。その設定ではHPではなく、このREADMEが公開されてしまいます。
 
-- Workersビルド：`npm run build:workers`
-- 公開せずWorker構成を検証：`npm run validate:workers`
-- ビルドで生成される設定：`dist/server/wrangler.json`
+`main`へのプッシュで `.github/workflows/deploy-pages.yml` が実行され、全4ページの静的HTMLと画像・フォントを検証してから公開します。公開後も実際のURLの本文・画像・予約導線を自動検証します。
 
-GitHubへのコミット・プッシュはソースの納品です。GitHub Pagesの公開設定やCloudflareへのデプロイは行いません。リポジトリのルートにあるREADMEはホームページ本体ではありません。
+- 公開用ビルド: `npm run build:github-pages`
+- 公開する成果物: **`dist/github-pages` のみ**（ルートの `index.html` が必須）
+- 同じURL構造でローカル確認: `node scripts/serve-static.mjs dist/github-pages /Salon-des-cent 4193`
+- 全ページ検証: `node scripts/verify-site.mjs http://127.0.0.1:4193/Salon-des-cent/`
+
+Vinextの静的書き出しを利用し、GitHubのリポジトリ配下用に画像・リンク・フレームワーク素材のURLを統一しています。書き出されたHTMLファイルを各ページの `index.html` として配置します。サーバーやWorker、READMEは公開成果物に含めません。
+
+完了判定はプッシュ成功ではなく、公開URLでHP本体が取得でき、全4ページと参照素材の確認が通ることです。
+
+## Sites / Cloudflare Workers（別の公開方式）
+
+従来のSites・Workers向け構成も保持しています。
+
+- Workersビルド: `npm run build:workers`
+- 公開せずWorker構成を検証: `npm run validate:workers`
+- 生成される設定: `dist/server/wrangler.json`
+
+**Cloudflare PagesにWorkersの出力をそのまま設定しないでください。** GitHub用成果物も `/Salon-des-cent/` 配下専用です。別のホスト・ドメインへ公開する場合は、そのURLに合わせた書き出しと実際の公開URLの検証を行ってください。

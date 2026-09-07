@@ -1,3 +1,4 @@
+import { sitePath, imageSources } from '@/lib/site-path';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/site-header';
 import { Footer } from '@/components/site-footer';
@@ -14,12 +15,16 @@ export default function Home() {
             <picture>
               <source
                 media="(max-width: 700px)"
-                srcSet="/images/editorial-mobile-640.webp 640w, /images/editorial-mobile-960.webp 960w"
+                srcSet={imageSources(
+                  '/images/editorial-mobile-640.webp 640w, /images/editorial-mobile-960.webp 960w',
+                )}
                 sizes="100vw"
               />
               <img
-                src="/images/editorial-1920.webp"
-                srcSet="/images/editorial-1280.webp 1280w, /images/editorial-1920.webp 1672w"
+                src={sitePath('/images/editorial-1920.webp')}
+                srcSet={imageSources(
+                  '/images/editorial-1280.webp 1280w, /images/editorial-1920.webp 1672w',
+                )}
                 sizes="100vw"
                 alt="艶やかな髪の曲線を表現したイメージビジュアル"
                 width="1672"
@@ -97,7 +102,7 @@ export default function Home() {
                 <br />
                 これからのきれいを、一緒に考えていきます。
               </p>
-              <a className="text-link" href="/concept">
+              <a className="text-link" href={sitePath('/concept')}>
                 サロンの想いを読む <ArrowUpRight size={20} strokeWidth={1} />
               </a>
             </div>
@@ -133,20 +138,20 @@ export default function Home() {
               一人ひとりに合う理由のある提案を。
             </p>
             <div className="care-summary">
-              <a href="/concept#gentle">
+              <a href={sitePath('/concept#gentle')}>
                 <span>01</span>髪と頭皮への配慮
                 <ArrowUpRight size={18} />
               </a>
-              <a href="/concept#color">
+              <a href={sitePath('/concept#color')}>
                 <span>02</span>繰り返すカラーへの思いやり
                 <ArrowUpRight size={18} />
               </a>
-              <a href="/concept#design">
+              <a href={sitePath('/concept#design')}>
                 <span>03</span>日常になじむ、似合わせ
                 <ArrowUpRight size={18} />
               </a>
             </div>
-            <a className="text-link light-link" href="/concept">
+            <a className="text-link light-link" href={sitePath('/concept')}>
               こだわりを詳しく <ArrowUpRight size={20} strokeWidth={1} />
             </a>
           </div>
@@ -164,7 +169,7 @@ export default function Home() {
               <br />
               心地よい選択を。
             </p>
-            <a className="text-link" href="/menu">
+            <a className="text-link" href={sitePath('/menu')}>
               メニュー・料金を見る <ArrowUpRight size={20} strokeWidth={1} />
             </a>
           </div>
@@ -236,7 +241,7 @@ export default function Home() {
               <h3>栃原 康彦</h3>
               <small>Yasuhiko Tochihara</small>
             </div>
-            <a className="text-link" href="/owner">
+            <a className="text-link" href={sitePath('/owner')}>
               オーナーについて <ArrowUpRight size={20} strokeWidth={1} />
             </a>
           </div>
@@ -259,8 +264,10 @@ export default function Home() {
           </div>
           <figure className="salon-panorama">
             <img
-              src="/images/salon-1920.webp"
-              srcSet="/images/salon-640.webp 640w, /images/salon-1280.webp 1280w, /images/salon-1920.webp 1920w"
+              src={sitePath('/images/salon-1920.webp')}
+              srcSet={imageSources(
+                '/images/salon-640.webp 640w, /images/salon-1280.webp 1280w, /images/salon-1920.webp 1920w',
+              )}
               sizes="100vw"
               alt="白い壁と木の床、ブラウンの椅子が並ぶサロンデサンの店内"
               width="2048"

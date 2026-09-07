@@ -35,6 +35,13 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  // GitHub Pages serves static files; never ship the Worker bundle to Pages.
+  if (process.env.SITE_BUILD_TARGET === 'github-pages') {
+    return {
+      css: { postcss: { plugins: [tailwindcss()] } },
+      plugins: [vinext()],
+    };
+  }
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= 'false';

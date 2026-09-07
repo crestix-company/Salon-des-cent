@@ -1,3 +1,4 @@
+import { sitePath } from '@/lib/site-path';
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/site-header';
@@ -15,7 +16,7 @@ export default function OwnerPage() {
       <main id="main">
         <section className="owner-profile section-shell">
           <div className="profile-heading">
-            <a className="breadcrumb" href="/">
+            <a className="breadcrumb" href={sitePath('/')}>
               HOME <span>/</span> OWNER
             </a>
             <SectionLabel number="02">THE PERSON BEHIND THE SALON</SectionLabel>

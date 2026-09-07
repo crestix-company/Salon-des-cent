@@ -1,3 +1,4 @@
+import { sitePath } from '@/lib/site-path';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/site-header';
@@ -63,7 +64,7 @@ export default function MenuPage() {
       <Header />
       <main id="main" className="menu-page">
         <section className="menu-page-heading section-shell">
-          <a className="breadcrumb" href="/">
+          <a className="breadcrumb" href={sitePath('/')}>
             <ArrowLeft size={15} /> ホーム
           </a>
           <span className="eyebrow">MENU & PRICE</span>
@@ -130,7 +131,7 @@ export default function MenuPage() {
             </a>
             をご確認ください。
           </p>
-          <a className="text-link" href="/">
+          <a className="text-link" href={sitePath('/')}>
             ホームに戻る <ArrowLeft size={17} />
           </a>
         </div>

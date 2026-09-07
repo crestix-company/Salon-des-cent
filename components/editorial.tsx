@@ -1,3 +1,4 @@
+import { sitePath, imageSources } from '@/lib/site-path';
 import { ArrowUpRight } from 'lucide-react';
 import { SALON_RESERVATION_URL, HOTPEPPER_URL } from '@/lib/reservations';
 
@@ -21,8 +22,10 @@ export function SalonImage({
   return (
     <img
       className={className}
-      src={`/images/${name}-1280.webp`}
-      srcSet={`/images/${name}-640.webp 640w, /images/${name}-1280.webp ${width}w`}
+      src={sitePath(`/images/${name}-1280.webp`)}
+      srcSet={imageSources(
+        `/images/${name}-640.webp 640w, /images/${name}-1280.webp ${width}w`,
+      )}
       sizes="(max-width: 700px) 100vw, 50vw"
       alt={alt}
       width={width}
@@ -104,7 +107,7 @@ export function PageIntro({
 }) {
   return (
     <section className="page-intro section-shell">
-      <a className="breadcrumb" href="/">
+      <a className="breadcrumb" href={sitePath('/')}>
         HOME <span>/</span> {english}
       </a>
       <SectionLabel number={number}>{english}</SectionLabel>

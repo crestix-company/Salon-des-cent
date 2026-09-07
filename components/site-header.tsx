@@ -1,4 +1,5 @@
 'use client';
+import { sitePath } from '@/lib/site-path';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
@@ -27,7 +28,11 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         本文へ移動
       </a>
       <header className={`site-header ${overlay ? 'header-overlay' : ''}`}>
-        <a className="brand" href="/" aria-label="サロンデサン ホーム">
+        <a
+          className="brand"
+          href={sitePath('/')}
+          aria-label="サロンデサン ホーム"
+        >
           <span className="brand-wordmark">
             Salon <i>des</i> cent
           </span>
@@ -36,10 +41,15 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         <nav className="desktop-nav" aria-label="メインナビゲーション">
           {links.map(([en, jp, url]) => (
             <a
-              href={url}
+              href={sitePath(url)}
               key={en}
               aria-label={jp}
-              aria-current={pathname === url ? 'page' : undefined}
+              aria-current={
+                pathname?.replace(/\/$/, '') ===
+                  sitePath(url).replace(/\/$/, '') || pathname === url
+                  ? 'page'
+                  : undefined
+              }
             >
               {en}
             </a>
@@ -74,13 +84,13 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               髪と頭皮の未来を考える、サロンデサン。
             </SheetDescription>
             <nav aria-label="モバイルナビゲーション">
-              <a href="/" onClick={() => setOpen(false)}>
+              <a href={sitePath('/')} onClick={() => setOpen(false)}>
                 <span>HOME</span>
                 <small>トップ</small>
                 <ArrowUpRight size={18} />
               </a>
               {links.map(([en, jp, url]) => (
-                <a href={url} onClick={() => setOpen(false)} key={en}>
+                <a href={sitePath(url)} onClick={() => setOpen(false)} key={en}>
                   <span>{en}</span>
                   <small>{jp}</small>
                   <ArrowUpRight size={18} />

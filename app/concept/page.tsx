@@ -1,3 +1,4 @@
+import { sitePath } from '@/lib/site-path';
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/site-header';
@@ -111,7 +112,7 @@ export default function ConceptPage() {
               一人のスタイリストが。
             </h2>
           </div>
-          <a className="text-link" href="/owner">
+          <a className="text-link" href={sitePath('/owner')}>
             オーナー紹介へ <ArrowUpRight size={21} />
           </a>
         </section>
