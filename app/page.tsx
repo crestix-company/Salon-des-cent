@@ -1,33 +1,335 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { Header } from '@/components/site-header';
 import { Footer } from '@/components/site-footer';
-export default function Home(){return <><Header/><main id="main">
-<section className="hero" aria-labelledby="hero-title">
-<div className="hero-photo"><img src="/images/hero-1920.webp" srcSet="/images/hero-640.webp 640w, /images/hero-1280.webp 1280w, /images/hero-1920.webp 1920w" sizes="(max-width: 850px) 100vw, 66vw" alt="やわらかな光が差し込むサロンデサンの待合スペース" width="1280" height="960" fetchPriority="high"/><span className="photo-note">A quiet moment, just for you.</span></div>
-<div className="hero-copy"><p className="eyebrow">HAIR & SCALP CARE · NAGAOKA</p><h1 id="hero-title">これからの髪に、<br/>ずっと、<em>やさしく。</em></h1><p className="hero-description">今日のきれいも、その先も。<br/>髪と頭皮に寄り添う、あなたのための美容室。</p><a className="text-link" href="#concept">サロンデサンの想い <ArrowUpRight size={19}/></a></div>
-<div className="hero-bottom"><span>Salon des cent</span><a href="#concept">SCROLL TO EXPLORE <ArrowDown size={15}/></a><span>NAGAOKA, NIIGATA</span></div>
-</section>
-<section className="concept section-shell" id="concept"><div className="section-heading"><span className="eyebrow">01 — OUR PHILOSOPHY</span><h2>Beautiful today.<br/><i>Beautiful tomorrow.</i></h2></div><div className="concept-copy"><h3>何年先も、<br/>好きな髪型を楽しむために。</h3><p>大切にしているのは、<br/>「今日きれいになること」だけではありません。</p><p>カラーやパーマを繰り返しても、できるだけ髪や頭皮への負担を抑えながら、これから先もヘアスタイルを楽しんでいただきたい。</p><p>一人ひとりの変化やお悩みに向き合い、<br/>あなたの髪の未来を、一緒につくっていきます。</p><span className="concept-signature">Salon des cent</span></div></section>
-<section className="care-section" id="care"><div className="care-grid section-shell">
-<div className="care-visual"><div className="section-heading"><span className="eyebrow">02 — OUR CARE</span><h2>Care for your hair.<br/><i>Care for you.</i></h2></div><figure><img src="/images/care-1280.webp" srcSet="/images/care-640.webp 640w, /images/care-1280.webp 1280w" sizes="(max-width: 850px) 85vw, 40vw" alt="落ち着いて施術を受けられるサロンのセット椅子" width="1086" height="1448" loading="lazy"/><figcaption>美しさの土台から、丁寧に。</figcaption></figure></div>
-<div className="care-content"><p className="section-lead">髪にも、頭皮にも、<br/>あなたらしさにも。</p><p className="care-intro">年齢とともに変わるお悩みも、これから楽しみたいスタイルも。小さなことから、お聞かせください。</p>
-{[
-['01','Gentle care','髪と頭皮へのやさしさを大切に。','ハリ・コシの変化や、カラー後の頭皮の違和感。そんなお悩みに寄り添えるよう、負担に配慮した商材を中心に、一人ひとりの状態に合うケアをご提案します。'],
-['02','Thoughtful color','繰り返すカラーに、思いやりを。','定期的に続ける白髪染めやヘアカラーだからこそ、未来の髪まで考えて。髪と頭皮をいたわりながら、自分らしい色を楽しめるようサポートします。'],
-['03','Personal design','一人ひとりに向き合う、似合わせ。','一人のスタイリストが、ご希望を伺いながら施術を担当。髪質・骨格・生え癖に加え、パーソナルカラーも踏まえたスタイルをご提案します。'],
-['04','Scalp & relaxation','頭皮をいたわる、ヘッドスパ。','やさしさを考えた低刺激のシャンプーを使用。髪の細さやハリ・コシ、頭皮環境が気になり始めた方に、一人ひとりに合わせたケアを。']
-].map(([n,en,title,body])=><article className="care-point" key={n}><span className="point-number">{n}</span><div><span className="point-en">{en}</span><h3>{title}</h3><p>{body}</p></div></article>)}
-</div></div></section>
-<section className="menu-section section-shell" id="menu"><div className="menu-intro"><div className="section-heading"><span className="eyebrow">03 — MENU & PRICE</span><h2>Find your<br/><i>beautiful.</i></h2></div><h3>今のあなたに、<br/>心地よい選択を。</h3><p>髪の状態や、なりたいイメージに合わせて。<br/>施術内容はお気軽にご相談ください。</p><a className="text-link" href="/menu">すべてのメニューを見る <ArrowUpRight size={19}/></a></div><div className="menu-list"><p className="price-note">基本メニュー <span>すべて税込</span></p>{[
-['Cut','カット','¥3,800','ブロー込み'],
-['Color','カラー','¥4,300〜','シャンプー・ブロー込み'],
-['Perm','パーマ','¥8,600','カット・シャンプー・ブロー込み'],
-['Head spa','ヘッドスパ','¥2,200','髪と頭皮に、いたわりの時間を'],
-['Treatment','トリートメント','¥2,200','クレンジング・ドライ込み']
-].map(([en,jp,price,note])=><div className="menu-row" key={en}><div><span className="menu-en">{en}</span><h3>{jp}</h3><p>{note}</p></div><span className="price">{price}</span></div>)}<p className="menu-footnote">カラーは髪の長さによって料金が異なります。<br/>最新の料金・クーポンは予約ページをご確認ください。</p></div></section>
-<section className="salon-section" id="salon"><div className="salon-heading section-shell"><div className="section-heading"><span className="eyebrow">04 — OUR SALON</span><h2>A little pause.<br/><i>A place for you.</i></h2></div><div className="salon-copy"><h3>肩の力を抜いて、<br/>自分のためのひとときを。</h3><p>周りを気にせず、ゆったりと。<br/>大きなサロンとは違う、穏やかな時間が流れるプライベート空間です。</p><p>「ずっと相談できる美容師を見つけたい」<br/>そんなあなたに、長く通っていただける場所でありたいと考えています。</p></div></div>
-<figure className="salon-panorama"><img src="/images/salon-1920.webp" srcSet="/images/salon-640.webp 640w, /images/salon-1280.webp 1280w, /images/salon-1920.webp 1920w" sizes="100vw" alt="白い壁と木の床、ブラウンの椅子が並ぶサロンデサンの店内" width="2048" height="1536" loading="lazy"/><figcaption><span>Salon des cent</span><span>PRIVATE HAIR SALON · NAGAOKA</span></figcaption></figure>
-<div className="salon-details section-shell"><div className="gallery-intro"><span className="eyebrow">THE DETAILS</span><h3>光と、木と、<br/>穏やかな時間。</h3><p>いつもの日常から、<br/>少しだけ離れて。</p></div><figure className="detail-photo"><img src="/images/sofa-1280.webp" srcSet="/images/sofa-640.webp 640w, /images/sofa-1280.webp 1280w" sizes="(max-width: 850px) 46vw, 34vw" width="1280" height="960" loading="lazy" alt="光の差し込む窓際に置かれたグリーンのソファ"/><figcaption>01 / A comfortable seat</figcaption></figure><figure className="detail-photo detail-offset"><img src="/images/light-1280.webp" srcSet="/images/light-640.webp 640w, /images/light-1280.webp 1280w" sizes="(max-width: 850px) 46vw, 28vw" width="960" height="1280" loading="lazy" alt="花とやわらかな日差しに包まれた窓辺"/><figcaption>02 / In the gentle light</figcaption></figure></div></section>
-<section className="access-section section-shell" id="access"><div className="access-visual"><span className="eyebrow">05 — ACCESS</span><h2>We’re here<br/><i>for you.</i></h2><img src="/images/exterior-1280.webp" srcSet="/images/exterior-640.webp 640w, /images/exterior-1280.webp 1280w" sizes="(max-width: 850px) 100vw, 43vw" width="2048" height="1536" loading="lazy" alt="新潟県長岡市西宮内にあるサロンデサンの外観"/></div><div className="access-info"><p className="eyebrow">SALON INFORMATION</p><h3>サロンデサン</h3><p className="salon-en">Salon des cent</p><dl><div><dt>住所</dt><dd>新潟県長岡市西宮内2-4<br/><small>クスリのアオキ西宮内店様 向かい</small></dd></div><div><dt>営業時間</dt><dd>9:00〜19:00</dd></div><div><dt>定休日</dt><dd>毎週月曜日・第1火曜日</dd></div><div><dt>電話番号</dt><dd><a href="tel:0258773631">0258-77-3631</a></dd></div><div><dt>駐車場</dt><dd>3台</dd></div></dl><a className="button" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%AD%E3%83%B3%E3%83%87%E3%82%B5%E3%83%B3%20%E6%96%B0%E6%BD%9F%E7%9C%8C%E9%95%B7%E5%B2%A1%E5%B8%82%E8%A5%BF%E5%AE%AE%E5%86%852-4" target="_blank" rel="noopener noreferrer">Google Mapsで見る <ArrowUpRight size={18}/></a></div></section>
-<section className="reservation" id="reservation"><div className="reservation-inner"><span className="eyebrow">RESERVATION</span><h2>その先のきれいを、<br/>ここから。</h2><p>あなたの髪のお話を、聞かせてください。<br/>ご予約はWEB、またはお電話で承ります。</p><div className="booking-options"><a className="button booking-primary" href="https://beauty.hotpepper.jp/slnH000240941/" target="_blank" rel="noopener noreferrer"><span><small>HOT PEPPER Beauty</small>空席確認・WEB予約</span><ArrowUpRight size={22}/></a><a className="button booking-secondary" href="http://salon-de-san.com/pcreserve.php" target="_blank" rel="noopener noreferrer"><span><small>SALON RESERVATION</small>サロンの予約システム</span><ArrowUpRight size={22}/></a></div><a className="reservation-phone" href="tel:0258773631"><span>TEL</span>0258-77-3631</a><p className="phone-hours">受付 9:00〜19:00 ／ 毎週月曜日・第1火曜日定休</p></div><span className="reservation-watermark" aria-hidden="true">For your future.</span></section>
-</main><Footer/></>}
+import { SalonImage, SectionLabel, Reservation } from '@/components/editorial';
+import { SALON_RESERVATION_URL } from '@/lib/reservations';
+
+export default function Home() {
+  return (
+    <>
+      <Header overlay />
+      <main id="main">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-photo">
+            <picture>
+              <source
+                media="(max-width: 700px)"
+                srcSet="/images/editorial-mobile-640.webp 640w, /images/editorial-mobile-960.webp 960w"
+                sizes="100vw"
+              />
+              <img
+                src="/images/editorial-1920.webp"
+                srcSet="/images/editorial-1280.webp 1280w, /images/editorial-1920.webp 1672w"
+                sizes="100vw"
+                alt="艶やかな髪の曲線を表現したイメージビジュアル"
+                width="1672"
+                height="941"
+                fetchPriority="high"
+              />
+            </picture>
+          </div>
+          <div className="hero-copy">
+            <p className="eyebrow">SALON DES CENT — NAGAOKA, NIIGATA</p>
+            <h1 id="hero-title">
+              髪の未来まで、
+              <br />
+              <em>美しく。</em>
+            </h1>
+            <p className="hero-description">
+              今日のきれいも、その先も。
+              <br />
+              髪と頭皮に、丁寧に向き合う
+              <br className="mobile-break" />
+              プライベートサロン。
+            </p>
+            <a
+              className="text-link light-link"
+              href={SALON_RESERVATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              サロンの公式サイトから予約する{' '}
+              <ArrowUpRight size={20} strokeWidth={1} />
+            </a>
+          </div>
+          <div className="hero-bottom">
+            <span>Beauty, beyond today.</span>
+            <a href="#concept">
+              EXPLORE <ArrowDown size={16} strokeWidth={1} />
+            </a>
+            <span className="hero-image-note">HAIR VISUAL — IMAGE</span>
+          </div>
+        </section>
+        <section className="home-concept section-shell" id="concept">
+          <SectionLabel number="01">OUR PHILOSOPHY</SectionLabel>
+          <div className="concept-layout">
+            <div className="concept-title">
+              <span className="editorial-note">
+                For the beauty
+                <br />
+                <i>that stays.</i>
+              </span>
+              <h2>
+                何年先も、
+                <br />
+                好きな髪型を
+                <br />
+                楽しむために。
+              </h2>
+            </div>
+            <div className="concept-body">
+              <p className="lead-copy">
+                美しさは、一度きりではなく、
+                <br />
+                積み重ねていくもの。
+              </p>
+              <p>
+                髪と頭皮をいたわりながら、
+                <br />
+                自分らしいスタイルを楽しみ続ける。
+                <br />
+                それが、サロンデサンの考えるヘアケアです。
+              </p>
+              <p>
+                一人のスタイリストが、あなたの髪に向き合う。
+                <br />
+                小さな変化にも気づける距離で、
+                <br />
+                これからのきれいを、一緒に考えていきます。
+              </p>
+              <a className="text-link" href="/concept">
+                サロンの想いを読む <ArrowUpRight size={20} strokeWidth={1} />
+              </a>
+            </div>
+            <figure className="concept-photo">
+              <SalonImage
+                name="sofa"
+                alt="窓からの光に包まれるサロンデサンのグリーンのソファ"
+              />
+              <figcaption>光が差し込む、いつもの場所で。</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section className="home-care dark-section" id="care">
+          <div className="care-image">
+            <SalonImage
+              name="care"
+              alt="サロンデサンの鏡とブラウンのセット椅子"
+            />
+            <span className="image-index">THE ART OF PERSONAL CARE</span>
+          </div>
+          <div className="care-story">
+            <SectionLabel number="02">OUR APPROACH</SectionLabel>
+            <h2>
+              似合う、その先の
+              <br />
+              心地よさまで。
+            </h2>
+            <p>
+              髪質や骨格、頭皮の状態。
+              <br />
+              そして、毎日の暮らし方。
+              <br />
+              一人ひとりに合う理由のある提案を。
+            </p>
+            <div className="care-summary">
+              <a href="/concept#gentle">
+                <span>01</span>髪と頭皮への配慮
+                <ArrowUpRight size={18} />
+              </a>
+              <a href="/concept#color">
+                <span>02</span>繰り返すカラーへの思いやり
+                <ArrowUpRight size={18} />
+              </a>
+              <a href="/concept#design">
+                <span>03</span>日常になじむ、似合わせ
+                <ArrowUpRight size={18} />
+              </a>
+            </div>
+            <a className="text-link light-link" href="/concept">
+              こだわりを詳しく <ArrowUpRight size={20} strokeWidth={1} />
+            </a>
+          </div>
+        </section>
+        <section className="home-menu section-shell" id="menu">
+          <div className="menu-intro">
+            <SectionLabel number="03">MENU & PRICE</SectionLabel>
+            <h2 className="display-serif">
+              Your kind
+              <br />
+              of <i>beautiful.</i>
+            </h2>
+            <p className="lead-copy">
+              今のあなたに、
+              <br />
+              心地よい選択を。
+            </p>
+            <a className="text-link" href="/menu">
+              メニュー・料金を見る <ArrowUpRight size={20} strokeWidth={1} />
+            </a>
+          </div>
+          <div className="menu-list">
+            <p className="price-note">
+              基本メニュー <span>すべて税込</span>
+            </p>
+            {[
+              ['Cut', 'カット', '¥3,800', 'ブロー込み'],
+              ['Color', 'カラー', '¥4,300〜', 'シャンプー・ブロー込み'],
+              ['Perm', 'パーマ', '¥8,600', 'カット・シャンプー・ブロー込み'],
+              [
+                'Head spa',
+                'ヘッドスパ',
+                '¥2,200',
+                '頭皮をいたわる、リラックスタイム',
+              ],
+              [
+                'Treatment',
+                'トリートメント',
+                '¥2,200',
+                'クレンジング・ドライ込み',
+              ],
+            ].map(([en, jp, price, note]) => (
+              <div className="menu-row" key={en}>
+                <div>
+                  <h3>
+                    <span>{en}</span>
+                    {jp}
+                  </h3>
+                  <p>{note}</p>
+                </div>
+                <span className="price">{price}</span>
+              </div>
+            ))}
+            <p className="menu-footnote">
+              カラーは髪の長さによって料金が異なります。
+              <br />
+              施術内容や料金は、ご予約時にもご確認ください。
+            </p>
+          </div>
+        </section>
+        <section className="home-owner section-shell" id="owner">
+          <figure className="owner-photo">
+            <SalonImage
+              name="owner"
+              alt="サロンデサンのオーナースタイリスト 栃原康彦"
+            />
+            <figcaption>YASUHIKO TOCHIHARA</figcaption>
+          </figure>
+          <div className="owner-intro">
+            <SectionLabel number="04">MEET YOUR STYLIST</SectionLabel>
+            <h2>
+              髪のことを、
+              <br />
+              ずっと話せる人に。
+            </h2>
+            <p>
+              あなたに似合うこと。
+              <br />
+              忙しい朝にも、扱いやすいこと。
+              <br />
+              サロンを出たあとの毎日まで考えて、
+              <br />
+              スタイルをご提案します。
+            </p>
+            <div className="owner-name">
+              <span>OWNER / STYLIST</span>
+              <h3>栃原 康彦</h3>
+              <small>Yasuhiko Tochihara</small>
+            </div>
+            <a className="text-link" href="/owner">
+              オーナーについて <ArrowUpRight size={20} strokeWidth={1} />
+            </a>
+          </div>
+        </section>
+        <section className="home-salon" id="salon">
+          <div className="salon-top section-shell">
+            <SectionLabel number="05">THE SALON</SectionLabel>
+            <h2>
+              自分のための、
+              <br />
+              静かなひととき。
+            </h2>
+            <p>
+              白い壁、木の温もり、やわらかな光。
+              <br />
+              長岡・西宮内の小さなサロンで、
+              <br />
+              肩の力を抜いて、お過ごしください。
+            </p>
+          </div>
+          <figure className="salon-panorama">
+            <img
+              src="/images/salon-1920.webp"
+              srcSet="/images/salon-640.webp 640w, /images/salon-1280.webp 1280w, /images/salon-1920.webp 1920w"
+              sizes="100vw"
+              alt="白い壁と木の床、ブラウンの椅子が並ぶサロンデサンの店内"
+              width="2048"
+              height="1536"
+              loading="lazy"
+            />
+            <figcaption>
+              Salon des cent <span>PRIVATE HAIR SALON</span>
+            </figcaption>
+          </figure>
+        </section>
+        <section className="access-section section-shell" id="access">
+          <div className="access-title">
+            <SectionLabel number="06">ACCESS</SectionLabel>
+            <h2 className="display-serif">
+              See you
+              <br />
+              <i>in Nagaoka.</i>
+            </h2>
+            <SalonImage
+              name="exterior"
+              alt="新潟県長岡市西宮内2-4にあるサロンデサンの外観"
+            />
+          </div>
+          <div className="access-info">
+            <span className="eyebrow">SALON INFORMATION</span>
+            <h3>サロンデサン</h3>
+            <p className="salon-en">Salon des cent</p>
+            <dl>
+              <div>
+                <dt>住所</dt>
+                <dd>
+                  新潟県長岡市西宮内2-4
+                  <br />
+                  <small>クスリのアオキ西宮内店様 向かい</small>
+                </dd>
+              </div>
+              <div>
+                <dt>営業時間</dt>
+                <dd>9:00〜19:00</dd>
+              </div>
+              <div>
+                <dt>定休日</dt>
+                <dd>毎週月曜日・第1火曜日</dd>
+              </div>
+              <div>
+                <dt>電話番号</dt>
+                <dd>
+                  <a href="tel:0258773631">0258-77-3631</a>
+                </dd>
+              </div>
+              <div>
+                <dt>駐車場</dt>
+                <dd>3台</dd>
+              </div>
+            </dl>
+            <a
+              className="button"
+              href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%AD%E3%83%B3%E3%83%87%E3%82%B5%E3%83%B3%20%E6%96%B0%E6%BD%9F%E7%9C%8C%E9%95%B7%E5%B2%A1%E5%B8%82%E8%A5%BF%E5%AE%AE%E5%86%852-4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Mapsで見る <ArrowUpRight size={19} />
+            </a>
+          </div>
+        </section>
+        <Reservation />
+      </main>
+      <Footer />
+    </>
+  );
+}

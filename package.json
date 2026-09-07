@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:workers": "npm run build",
+    "validate:workers": "wrangler deploy --dry-run --config dist/server/wrangler.json",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
     "format": "oxfmt"
