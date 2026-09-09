@@ -35,8 +35,12 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
-  // GitHub Pages serves static files; never ship the Worker bundle to Pages.
-  if (process.env.SITE_BUILD_TARGET === 'github-pages') {
+  // Both Pages providers serve static files, not the development Worker.
+  if (
+    ['github-pages', 'cloudflare-pages'].includes(
+      process.env.SITE_BUILD_TARGET || '',
+    )
+  ) {
     return {
       css: { postcss: { plugins: [tailwindcss()] } },
       plugins: [vinext()],
@@ -60,6 +64,8 @@ export default defineConfig(async () => {
       vinext(),
       sites(),
       cloudflare({
+        // Do not let the Pages configuration become a Worker configuration.
+        configPath: './wrangler.worker.jsonc',
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
         config: localBindingConfig,
       }),

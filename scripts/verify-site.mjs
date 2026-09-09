@@ -95,6 +95,22 @@ for (const asset of assets) {
   assert.equal(r.status, 200, `Asset ${asset}`);
   const data = await r.arrayBuffer();
   assert(data.byteLength > 0);
+  if (asset.endsWith('.css'))
+    assert(
+      r.headers.get('content-type')?.includes('text/css'),
+      'CSS must not be fallback HTML',
+    );
+  if (asset.endsWith('.js'))
+    assert(
+      r.headers.get('content-type')?.includes('javascript'),
+      'JS must not be fallback HTML',
+    );
+  if (asset.endsWith('.woff2'))
+    assert.equal(
+      new TextDecoder().decode(data.slice(0, 4)),
+      'wOF2',
+      'Font data, not fallback HTML',
+    );
   if (asset.startsWith(prefix + '/images/')) {
     assert(
       r.headers.get('content-type')?.startsWith('image/'),

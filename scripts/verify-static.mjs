@@ -89,6 +89,14 @@ assert.equal(
 assert(pages.get('owner/').includes('栃原 康彦'), 'Owner page exported');
 assert(existsSync(resolve(root, '.nojekyll')), 'No Jekyll/README fallback');
 assert(
+  existsSync(resolve(root, '404.html')),
+  'A real 404 page prevents SPA fallback from hiding missing routes',
+);
+assert(
+  !existsSync(resolve(root, '_worker.js')),
+  'Static Pages must not contain a Worker entry',
+);
+assert(
   !existsSync(resolve(root, 'README.md')),
   'Do not publish source documentation',
 );

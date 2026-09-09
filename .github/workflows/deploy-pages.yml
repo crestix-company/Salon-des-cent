@@ -25,6 +25,10 @@ jobs:
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - run: npm ci
       - run: npx tsc --noEmit
+      - name: Build Cloudflare Pages output using the dashboard command
+        run: npm run build
+      - name: Verify Cloudflare Pages serving without publishing
+        run: npm run validate:cloudflare-pages
       - name: Export and validate actual HTML, links, images and fonts
         run: npm run build:github-pages
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4

@@ -6,9 +6,9 @@
 
 - インストール: `npm ci`
 - 起動: `npm run dev`
-- 検証: `npx tsc --noEmit`、`npm run build:workers`
-- ビルド後の確認: `npm run start -- --port 4191`
-- 別ターミナルで全ページ・画像・予約リンクを確認: `node scripts/verify-site.mjs http://localhost:4191`
+- 検証: `npx tsc --noEmit`、`npm run build`
+- Cloudflareと同じ配信方式で確認: `npm run preview:cloudflare-pages`
+- 別ターミナルで全ページ・画像・予約リンクを確認: `node scripts/verify-site.mjs http://127.0.0.1:4194/`
 
 ## ページ構成
 
@@ -35,6 +35,43 @@
 
 トップの髪の写真は、実際の施術事例ではない生成イメージです。制作指示・素材の記録は `DESIGN-NOTES.md` を参照してください。
 
+## Cloudflare Pagesでの公開（推奨）
+
+Cloudflareの **Workers & Pages → 作成 → Pages → Gitに接続** から、このリポジトリを選択し、次の設定で保存・デプロイしてください。
+
+| 項目 | 設定 |
+| --- | --- |
+| リポジトリ | `crestix-company/Salon-des-cent` |
+| 本番ブランチ | `main` |
+| フレームワークプリセット | **None（なし）** |
+| ビルドコマンド | `npm run build` |
+| ビルド出力ディレクトリ | `out` |
+| ルートディレクトリ | 空欄（リポジトリ直下） |
+
+Node.js 22系は `.node-version` で指定済みです。独自のAPIキー・トークン・環境変数は不要です。既存の `NODE_VERSION` が22未満なら削除するか22に変更してください。
+
+**「デプロイコマンド」の入力を求められる場合はWorkers側です。今回はPagesを選択してください。** Next.jsサーバー用プリセット・`dist/server`・`dist/client`・`dist/github-pages` は指定しません。
+
+既存のCloudflareプロジェクトに接続する場合も、ダッシュボードのビルドコマンド・出力先を上記に合わせてください。リポジトリの更新だけでは既存ダッシュボード設定は変更されません。
+
+通常の `npm run build` はCloudflare Pages用の静的HTMLを生成します。トップは `out/index.html`、下層ページも個別の `index.html` です。画像・フォント・リンクはドメイン直下用で、`pages.dev` と独自ドメインの双方で利用できます。デザイン・掲載情報・サロン独自の予約先は維持しています。
+
+ビルド中に全4ページとリンク先の画像・フォントを検証し、HP本体がない場合は失敗として止めます。GitHub ActionsでもCloudflare用のビルドと配信チェックを行います。
+
+### コマンドで公開する場合（任意）
+
+`cloudflare/wrangler.json` はCLI用のPages設定です。VinextがPages設定をWorker設定と誤認しないよう、開発用Workerとは分離しています。CloudflareのGit連携では上記のダッシュボード設定を使用します。
+
+- ビルド: `npm run build:cloudflare-pages`
+- ローカルのCloudflare Pages確認: `npm run preview:cloudflare-pages`
+- Cloudflareへの公開: `npm run deploy:cloudflare-pages`（自分のCloudflareアカウントへのログインが必要）
+- CLI設定のプロジェクト名: `salon-des-cent`。別の名前を使う場合は `cloudflare/wrangler.json` の `name` を合わせます。
+- 公開後の確認: `node scripts/verify-site.mjs https://実際の公開ドメイン/`
+
+Git連携を設定した後は、`main` へのプッシュでCloudflare側も自動更新されます。公開完了の判定は、Cloudflareが発行した実際のURLでの確認後に行ってください。
+
+設定項目の根拠: [Cloudflare公式ビルド設定](https://developers.cloudflare.com/pages/configuration/build-configuration/)、[Node.jsの指定](https://developers.cloudflare.com/pages/configuration/build-image/)。
+
 ## GitHub Pagesでの公開
 
 公開先: https://crestix-company.github.io/Salon-des-cent/
@@ -52,12 +89,12 @@ Vinextの静的書き出しを利用し、GitHubのリポジトリ配下用に�
 
 完了判定はプッシュ成功ではなく、公開URLでHP本体が取得でき、全4ページと参照素材の確認が通ることです。
 
-## Sites / Cloudflare Workers（別の公開方式）
+## Sites / 開発用Cloudflare Workers
 
-従来のSites・Workers向け構成も保持しています。
+Sites用の公開成果物も `out` に揃えています。開発用Worker構成は `wrangler.worker.jsonc` として保持しています。
 
 - Workersビルド: `npm run build:workers`
 - 公開せずWorker構成を検証: `npm run validate:workers`
 - 生成される設定: `dist/server/wrangler.json`
 
-**Cloudflare PagesにWorkersの出力をそのまま設定しないでください。** GitHub用成果物も `/Salon-des-cent/` 配下専用です。別のホスト・ドメインへ公開する場合は、そのURLに合わせた書き出しと実際の公開URLの検証を行ってください。
+Workersビルドは通常のCloudflare Pages公開では使用しません。GitHub用成果物も `/Salon-des-cent/` 配下専用です。
